@@ -4,7 +4,9 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "catalog.api": "StartDebugging"
+        "catalog.api": "StartDebugging",
+        "basket.api": "StartDebugging",
+        "discount.api": "StartDebugging"
       }
     }
   }
