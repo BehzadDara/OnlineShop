@@ -22,7 +22,6 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin1234
       - POSTGRES_DB=discountdb
-      - POSTGRES_HOST_AUTH_METHOD=trust
     restart: always
     ports:
       - 5432:5432
