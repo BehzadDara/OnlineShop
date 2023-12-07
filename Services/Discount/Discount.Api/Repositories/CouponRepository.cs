@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using Discount.Api.Entities;
 using Npgsql;
-using Npgsql.Replication.PgOutput.Messages;
 
 namespace Discount.Api.Repositories;
 
@@ -13,13 +12,13 @@ public class CouponRepository(IConfiguration _configuration) : ICouponRepository
             (_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
 
         var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>
-            ($"select * from Coupon where ProductName = {productName}");
+            ($"select * from Coupon where ProductName = '{productName}'");
         if (coupon is null)
         {
             return new Coupon
             {
                 ProductName = productName,
-                Description = "Not discount",
+                Description = "No discount",
                 Amount = 0
             };
         }
@@ -34,7 +33,7 @@ public class CouponRepository(IConfiguration _configuration) : ICouponRepository
 
         var affected = await connection.ExecuteAsync
             ($"insert into Coupon(ProductName, Description, Amount) " +
-            $"values({coupon.ProductName}, {coupon.Description}, {coupon.Amount})");
+            $"values('{coupon.ProductName}', '{coupon.Description}', {coupon.Amount})");
 
         return affected > 0;
     }
@@ -46,7 +45,7 @@ public class CouponRepository(IConfiguration _configuration) : ICouponRepository
 
         var affected = await connection.ExecuteAsync
             ($"update Coupon " +
-            $"set ProductName = {coupon.ProductName}, Description = {coupon.Description}, Amount = {coupon.Amount}" +
+            $"set ProductName = '{coupon.ProductName}', Description = '{coupon.Description}', Amount = {coupon.Amount} " +
             $"where Id = {coupon.Id}");
 
         return affected > 0;
