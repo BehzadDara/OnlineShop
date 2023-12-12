@@ -24,17 +24,14 @@ public static class HostExtensions
                 Connection = connection
             };
 
-            /*command.CommandText = "drop table if exists Coupon";
-            command.ExecuteNonQuery();*/
-
-            command.CommandText = @"create table if not exists Coupon
+            command.CommandText = @"create table if not exists Coupon 
                 (Id serial primary key,
                 ProductName varchar(200) not null,
                 Description text,
                 Amount int)";
             command.ExecuteNonQuery();
 
-            /*command.CommandText = @"insert into Coupon(ProductName, Description, Amount) values
+            /*command.CommandText = @"insert into Coupon(ProductName, Description, Amount) values 
                 ('IPhone X', 'iphone discount', 150),
                 ('Samsung 10', 'samsung discount', 150)";
             command.ExecuteNonQuery();*/
