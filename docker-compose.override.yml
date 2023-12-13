@@ -57,6 +57,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+
   catalog.api:
     container_name: catalog.api
     environment:
@@ -75,8 +82,10 @@ services:
       - ASPNETCORE_HTTP_PORTS=8001
       - CacheSettings:ConnectionString=basketdb:6379
       - GrpcSettings:DiscountUrl=http://discount.grpc:8003
+      - EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672
     depends_on:
       - basketdb
+      - rabbitmq
     ports:
       - 8001:8001
 
@@ -107,8 +116,10 @@ services:
       - ASPNETCORE_HTTP_PORTS=8004
       - ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=orderdb;User Id=sa;Password=Admin1234;TrustServerCertificate=True;
       # Connect orderdb in SSMS using IpConfig -> Ethernet adapter vEthernet (WSL) -> Ip V4
+      - EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672
     depends_on:
       - orderdb
+      - rabbitmq
     ports:
       - "8004:8004"
 
