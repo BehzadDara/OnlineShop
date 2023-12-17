@@ -107,7 +107,7 @@ services:
       - ASPNETCORE_HTTP_PORTS=8003
       - DatabaseSettings:ConnectionString=Server=discountdb;Port=5432;Database=discountdb;User Id=admin;Password=admin1234
     ports:
-      - "8003:8003"
+      - 8003:8003
 
   ordering.api:
     container_name: ordering.api
@@ -121,5 +121,29 @@ services:
       - orderdb
       - rabbitmq
     ports:
-      - "8004:8004"
+      - 8004:8004
+
+  ocelotapigateway:
+    container_name: ocelotapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8010
+    depends_on:
+      - catalog.api
+      - basket.api
+      - discount.api
+      - ordering.api
+    ports:
+      - 8010:8010
+
+  onlineshop.aggregator:
+    container_name: onlineshop.aggregator
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8005
+      - ApiSettings:CatalogUrl=http://catalog.api
+      - ApiSettings:BasketUrl=http://basket.api
+      - ApiSettings:OrderingUrl=http://ordering.api
+    ports:
+      - 8005:8005
 

@@ -1,0 +1,6 @@
+@OnlineShop.Aggregator_HostAddress = http://localhost:5140
+
+GET {{OnlineShop.Aggregator_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
