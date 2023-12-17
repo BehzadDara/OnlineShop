@@ -37,6 +37,12 @@ services:
     ports:
       - 1433:1433
 
+  mongoclient:
+    container_name: mongoclient
+    restart: always
+    ports:
+      - 5040:3000
+
   pgadmin:
     container_name: pgadmin
     environment:
@@ -141,9 +147,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8005
-      - ApiSettings:CatalogUrl=http://catalog.api
-      - ApiSettings:BasketUrl=http://basket.api
-      - ApiSettings:OrderingUrl=http://ordering.api
+      - ApiSettings:CatalogUrl=http://catalog.api:8000
+      - ApiSettings:BasketUrl=http://basket.api:8001
+      - ApiSettings:OrderingUrl=http://ordering.api:8004
+    depends_on:
+      - catalog.api
+      - basket.api
+      - ordering.api
     ports:
       - 8005:8005
 

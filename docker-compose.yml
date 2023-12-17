@@ -13,9 +13,12 @@ services:
   orderdb:
     image: mcr.microsoft.com/mssql/server
 
+  mongoclient:
+    image: mongoclient/mongoclient
+
   pgadmin:
     image: dpage/pgadmin4
-
+    
   portainer:
     image: portainer/portainer-ce
 

@@ -8,7 +8,7 @@
       "DownStreamHostAndPorts": [
         {
           "Host": "catalog.api",
-          "Port": 80
+          "Port": 8000
         }
       ],
       "UpStreamPathTemplate": "/Catalog/{controller}/{action}",
@@ -23,7 +23,7 @@
       "DownStreamHostAndPorts": [
         {
           "Host": "catalog.api",
-          "Port": 80
+          "Port": 8000
         }
       ],
       "UpStreamPathTemplate": "/Catalog/{controller}/{action}/{idOrNameOrCategory}",
@@ -36,7 +36,7 @@
       "DownStreamHostAndPorts": [
         {
           "Host": "basket.api",
-          "Port": 80
+          "Port": 8001
         }
       ],
       "UpStreamPathTemplate": "/Basket/{controller}/{action}",
@@ -55,7 +55,7 @@
       "DownStreamHostAndPorts": [
         {
           "Host": "basket.api",
-          "Port": 80
+          "Port": 8001
         }
       ],
       "UpStreamPathTemplate": "/Basket/{controller}/{action}/{userName}",
@@ -68,7 +68,7 @@
       "DownStreamHostAndPorts": [
         {
           "Host": "discount.api",
-          "Port": 80
+          "Port": 8002
         }
       ],
       "UpStreamPathTemplate": "/Discount/{controller}/{action}",
@@ -80,7 +80,7 @@
       "DownStreamHostAndPorts": [
         {
           "Host": "discount.api",
-          "Port": 80
+          "Port": 8002
         }
       ],
       "UpStreamPathTemplate": "/Discount/{controller}/{action}/{productName}",
@@ -93,7 +93,7 @@
       "DownStreamHostAndPorts": [
         {
           "Host": "ordering.api",
-          "Port": 80
+          "Port": 8004
         }
       ],
       "UpStreamPathTemplate": "/Ordering/{controller}/{action}/{userName}",

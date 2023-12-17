@@ -18,11 +18,6 @@ public class ShoppingController(
     public async Task<ActionResult<ShoppingDTO>> GetByUserName(string userName)
     {
         var basket = await _basketService.GetBasket(userName);
-        if (basket is null)
-        {
-            return Ok();
-        }
-
         foreach (var basketItem in basket.Items)
         {
             var product = await _catalogService.GetCatalog(basketItem.ProductId);

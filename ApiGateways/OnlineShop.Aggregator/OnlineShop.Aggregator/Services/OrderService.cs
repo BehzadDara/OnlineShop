@@ -7,7 +7,7 @@ public class OrderService(HttpClient _client) : IOrderService
 {
     public async Task<IEnumerable<OrderResponseDTO>> GetOrderByUserName(string userName)
     {
-        var response = await _client.GetAsync($"/Order/GetOrdersByUserName/{userName}");
+        var response = await _client.GetAsync($"/api/v1/Order/GetOrdersByUserName/{userName}");
         return await response.ReadContentAs<List<OrderResponseDTO>>();
     }
 }
